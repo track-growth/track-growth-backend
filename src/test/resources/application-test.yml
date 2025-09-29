@@ -17,8 +17,8 @@ spring:
         format_sql: true
         highlight_sql: true
         generate_statistics: false
-        use_sql_comments: false
-    show-sql: false
+        id.new_generator_mappings: true
+    show-sql: true
     open-in-view: false
 
   h2:

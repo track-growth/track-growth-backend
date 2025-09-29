@@ -1,11 +1,12 @@
 package com.growth.support;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.test.client.TestRestTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
 
 /**
@@ -14,11 +15,12 @@ import org.springframework.test.context.ActiveProfiles;
  * - 실제 HTTP 요청/응답 테스트
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("integration")
+@AutoConfigureWebTestClient
+@ActiveProfiles("test")
 public abstract class WebIntegrationTestBase {
 
     @Autowired
-    protected TestRestTemplate restTemplate;
+    protected WebTestClient webTestClient;
 
     // 공통 헤더 생성 유틸리티
     protected HttpHeaders createJsonHeaders() {

@@ -13,15 +13,23 @@ public class ApiResponse<T> {
     private String message;
     private T data;
 
-    public static <T> ApiResponse<T> ok(T data, String message) {
-        return new ApiResponse<>(200, message, data);
+    // 성공 응답 (데이터 생성시)
+    public static <T> ApiResponse<T> created(T data, String message) {
+        return new ApiResponse<>(201, message, data);
     }
 
-    public static <T> ApiResponse<T> ok(int statusCode, T data, String message) {
-        return new ApiResponse<>(statusCode, message, data);
+    // 성공 응답 (데이터만)
+    public static <T> ApiResponse<T> success(T data) {
+        return new ApiResponse<>(200, "성공", data);
     }
 
-    public static ApiResponse<String> okWithoutData(int statusCode, String message) {
+    // 성공 응답 (메시지만)
+    public static ApiResponse<String> success(String message) {
+        return new ApiResponse<>(200, message, EMPTY);
+    }
+
+    // 성공 응답 (데이터 없을때)
+    public static ApiResponse<String> successWithoutData(int statusCode, String message) {
         return new ApiResponse<>(statusCode, message, EMPTY);
     }
 
