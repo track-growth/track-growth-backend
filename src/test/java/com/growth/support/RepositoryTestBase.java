@@ -1,15 +1,14 @@
 package com.growth.support;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * Repository 테스트용 베이스 클래스
- * - @DataJpaTest를 사용한 JPA 레이어만 테스트
- */
-@DataJpaTest
+@DataJpaTest(showSql = true,
+        properties = {
+                "spring.jpa.hibernate.ddl-auto = create-drop"
+        })
 @ActiveProfiles("test")
 public abstract class RepositoryTestBase {
 
