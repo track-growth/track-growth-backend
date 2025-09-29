@@ -13,38 +13,9 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
         highlight_sql: true
         generate_statistics: false
     show-sql: true
     open-in-view: false
-
-  data:
-    redis:
-      host: ${REDIS_HOST}
-      port: ${REDIS_PORT}
-      password: ${REDIS_PASSWORD}
-
-jwt:
-  secret: ${JWT_SECRET}
-  expiration: 1800000 # 30? (???)
-  refresh-expiration: 1209600000 # 14? (???)
-
-server:
-  port: 8080
-
-springdoc:
-  api-docs:
-    path: /v3/api-docs
-    enabled: true
-  swagger-ui:
-    path: /swagger-ui.html
-    enabled: true
-    tags-sorter: alpha
-    operations-sorter: alpha
-    doc-expansion: none
-    display-request-duration: true
-  paths-to-match:
-    - /api/**
-  packages-to-scan:
-    - com.growth

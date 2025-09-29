@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: growth-test
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        highlight_sql: true
+        generate_statistics: false
+        use_sql_comments: false
+    show-sql: false
+    open-in-view: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: false
+
+  # 테스트 시 불필요한 기능들 비활성화
+  devtools:
+    restart:
+      enabled: false
+    livereload:
+      enabled: false
+
+# 로그 레벨 조정 (테스트 시 노이즈 줄이기)
+logging:
+  level:
+    org.springframework: WARN
+    org.hibernate: WARN
+    com.zaxxer.hikari: WARN
+    com.growth: DEBUG  # 애플리케이션 로그만 DEBUG로
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
